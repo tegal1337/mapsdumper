@@ -1,3 +1,9 @@
+/**
+ * @version 1.0.0
+ * @license MIT
+ * @example node index.js
+ * @author: Abdul Muttaqin
+ */
 function removeNulls(obj) {
     let isArray = obj instanceof Array;
     for (let k in obj) {

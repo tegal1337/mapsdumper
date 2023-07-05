@@ -1,5 +1,10 @@
 #!/usr/bin/env node
-
+/**
+ * @version 1.0.0
+ * @license MIT
+ * @example node index.js
+ * @author: Abdul Muttaqin
+ */
 const puppeteer = require('puppeteer');
 const {
     extractData,

@@ -1,7 +1,8 @@
 /**
- *  @description Dilarang menjual ulang script ini , entah apapun alasan nya  :P , karna cuma saya yang ngerti :D
- * @author Abdul Muttaqin
  * @version 1.0.0
+ * @license MIT
+ * @example node index.js
+ * @author: Abdul Muttaqin
  */
 async function extractLinks(page) {
     return page.$$eval('a[href]', anchors => {

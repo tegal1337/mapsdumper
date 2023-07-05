@@ -1,5 +1,10 @@
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
+/**
+ * @version 1.0.0
+ * @license MIT
+ * @example node index.js
+ * @author: Abdul Muttaqin
+ */
 async function waitForReviews(page) {
     const reviewsButtonXPath = "//button[contains(., 'Reviews')]";
     const sortButtonXPath = '//button[.//span[contains(text(), "Sort")]]';

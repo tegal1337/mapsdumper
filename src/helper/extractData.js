@@ -3,9 +3,10 @@ const { waitForReviews } = require("./waitForReviews");
 const fs = require('fs');
 const { Parser } = require('json2csv');
 /**
- *  @description Dilarang menjual ulang script ini , entah apapun alasan nya  :P , karna cuma saya yang ngerti :D
- * @author Abdul Muttaqin
  * @version 1.0.0
+ * @license MIT
+ * @example node index.js
+ * @author: Abdul Muttaqin
  */
 async function extractData(page) {
     try {
