@@ -46,8 +46,7 @@ async function scraperPlace(query, latlong) {
             await scrapplace.close()
         }
     }
-    await browser.close()
-    fs.writeFileSync('data.json', JSON.stringify(allData));
+    await browser.close();
     return allData;
 }
 
