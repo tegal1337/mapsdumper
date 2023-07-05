@@ -7,8 +7,8 @@ A tool for dumping place details from Google Maps such as phone numbers, emails,
 ## Quick Links
 
 * [Demo](https://www.youtube.com/watch?v=jHwfN4i4M8A)
-* [Installation](#installation)
-* [Features](#features)
+* [Installation](#run--installation)
+* [Feature](#feature)
 * [Configuration](#configuration)
 
 ## Demo
