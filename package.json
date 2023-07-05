@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "enquirer": "^2.3.6",
+    "express": "^4.18.2",
+    "json2csv": "^6.0.0-alpha.2",
+    "puppeteer": "^20.7.4"
+  },
+  "name": "mapsdumper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Abdul Muttaqin",
+  "license": "MIT",
+  "description": "dumping place and review with simple ways",
+  "keywords": [
+    "maps",
+    "googlemaps",
+    "scraper"
+  ]
+}
