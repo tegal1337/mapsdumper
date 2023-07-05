@@ -1,21 +1,19 @@
-
-  <p align="center">
-  <image src="https://github.com/tegal1337/mapsdumper/assets/31664438/04c8cf97-fdee-4d41-8201-b3e98fe21dfb" align="center" width="620"/>
+<p align="center">
+  <img src="https://github.com/tegal1337/mapsdumper/assets/31664438/04c8cf97-fdee-4d41-8201-b3e98fe21dfb" align="center" width="620"/>
 <h1 align="center"> MAPSDUMPER </h1>
-a Tool for Dumping place details from Google Maps like phone,email,website,and reviews
-    </p>
+A tool for dumping place details from Google Maps such as phone numbers, emails, websites, and reviews
+</p>
     
 ## Quick Links
 
-* [Demo](https://www.youtube.com/watch?v=)
-* [Installation](#run--installation)
-* [Feature](#feature)
+* [Demo](https://www.youtube.com/watch?v=jHwfN4i4M8A)
+* [Installation](#installation)
+* [Features](#features)
 * [Configuration](#configuration)
-
-
 
 ## Demo
  <a href="https://www.youtube.com/watch?v=jHwfN4i4M8A"> <img src="https://asciinema.org/a/paxVigckYdHQDm0DS1kFyETjG.png" width="836"/></a>
+
 
 ```bash
 $ see this DEMO in here > https://www.youtube.com/watch?v=jHwfN4i4M8A
@@ -49,10 +47,6 @@ How to run ?
  - Windows / Linux
  - Google Chrome
  - a Youtube account 
-
-
-## Support this project by 
-
 
 
 # Contact 
