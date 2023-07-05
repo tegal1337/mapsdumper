@@ -88,7 +88,6 @@ async function extractData(page) {
                     website: dataplace.website,
                     phone: dataplace.phone,
                     imgLink: dataplace.imgLink,
-                    // make review text joing with comma
                     reviewText: reviewData.map((item) => item.reviewText).join(','),
                 });
                 fs.writeFileSync('data.csv', csv + '\n', {flag: 'a'});
@@ -104,8 +103,6 @@ async function extractData(page) {
         await page.waitForTimeout(5000);
     }
     Logger("Done .. Got "+responses[0].review.length+" Reviews", "green");
-
-
 
     await page.close()
     return responses;

@@ -5,7 +5,6 @@
  * @author: Abdul Muttaqin
  */
 function Logger(message, color) {
-    // Create the time string and reset the color after
     const timeString = `\x1b[37m[${new Date().toLocaleTimeString()}]\x1b[0m`;
 
     switch(color){

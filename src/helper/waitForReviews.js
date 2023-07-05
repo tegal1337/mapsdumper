@@ -27,8 +27,6 @@ async function waitForReviews(page) {
     } else {
       throw new Error('Sort button not found');
     }
-
-    // Wait for the dropdown menu to appear
     await delay(2000);
 
     await page.waitForXPath(newest);

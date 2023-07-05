@@ -72,7 +72,6 @@ async function scraperSinglePlace(url) {
     }
 }
 
-// Setting up prompts for the terminal
 async function main() {
     try {
         const methodAnswer = await enquirer.prompt({
