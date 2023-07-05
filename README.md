@@ -1,7 +1,8 @@
 <center>
+<p align="center">
   <img src="https://github.com/tegal1337/mapsdumper/assets/31664438/04c8cf97-fdee-4d41-8201-b3e98fe21dfb" align="center" width="620"/>
 <h1 align="center"> MAPSDUMPER </h1>
-<p align="center">
+
   <a href="https://www.youtube.com/watch?v=jHwfN4i4M8A">Demo</a>
   •
   <a href="#run--installation">Installation</a>
