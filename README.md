@@ -17,7 +17,7 @@ A tool for dumping place details from Google Maps such as phone numbers, emails,
 
 
 ## Demo
- <a href="https://www.youtube.com/watch?v=jHwfN4i4M8A"> <img src="https://asciinema.org/a/paxVigckYdHQDm0DS1kFyETjG.png" width="836"/></a>
+ <a href="https://www.youtube.com/watch?v=jHwfN4i4M8A"> <img src="https://telegra.ph/file/b7b977563a036daec087b.jpg" width="836"/></a>
 
 
 ```bash
@@ -53,9 +53,6 @@ How to run ?
  - Google Chrome
  - a Youtube account 
 
-
-# Contact 
-cp@imtaqin.id
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/fdciabdul)
 
