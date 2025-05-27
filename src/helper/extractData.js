@@ -3,17 +3,11 @@ const { Logger } = require("../utils/Logger");
 const { waitForReviews } = require("./waitForReviews");
 const fs = require('fs');
 const { Parser } = require('json2csv');
-/**
- * @version 1.0.0
- * @license MIT
- * @example node index.js
- * @author: Abdul Muttaqin
- */
+
 async function extractData(page) {
     try {
-
-
         Logger("Extracting data ..", "green");
+        
         const dataplace = await page.evaluate(() => {
             const title = document.querySelector('h1')?.innerText || '';
             const ratingText = document.querySelector('div.F7nice')?.innerText || '';
@@ -43,103 +37,135 @@ async function extractData(page) {
                 imgLink,
             };
         });
+
         Logger(`Get data from [${dataplace.title}] `, "yellow");
-        let responses = [];
+        
+        await waitForReviews(page);
+        
         Logger("Looking for reviews ..", "green");
-        let urlCounter = 0;
-        page.on('response', async (response) => {
-            const responseUrl = response.url();
-            if (responseUrl.includes("listentitiesreviews")) {
-                urlCounter += 1;
-                if (urlCounter === 2) {
-                    Logger("Got API place ..", "green");
-                    let text = await response.text();
-                    text = text.replace(")]}'", "");
-                    let data = JSON.parse(text);
-                    console.log("got data " + data)
-                    let reviewData = [];
-
-                    data.forEach((item) => {
-                        if (item) {
-                            item.forEach((subItem) => {
-                                if (subItem[0] && subItem[3] !== "google") {
-                                    const name = subItem[0][1];
-                                    const imageUrl = subItem[0][2];
-                                    const date = subItem[1];
-                                    const reviewText = subItem[3];
-                                    const starCount = subItem[4];
-                                    console.log("got review data " + reviewText)
-                                    reviewData.push({
-                                        date,
-                                        name,
-                                        imageUrl,
-                                        reviewText,
-                                        starCount
-                                    });
-                                }
-                            });
-                        }
+        
+        await page.waitForSelector('::-p-xpath(//div[contains(@class, "jftiEf") and contains(@class, "fontBodyMedium")])');
+        
+        const reviewData = await page.evaluate(() => {
+            const reviews = [];
+            
+            const reviewContainers = document.evaluate(
+                '//div[contains(@class, "jftiEf") and contains(@class, "fontBodyMedium")]',
+                document,
+                null,
+                XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                null
+            );
+            
+            for (let i = 0; i < reviewContainers.snapshotLength; i++) {
+                const reviewElement = reviewContainers.snapshotItem(i);
+                
+                const nameElement = document.evaluate(
+                    './/div[contains(@class, "d4r55")]',
+                    reviewElement,
+                    null,
+                    XPathResult.FIRST_ORDERED_NODE_TYPE,
+                    null
+                ).singleNodeValue;
+                
+                const imageElement = document.evaluate(
+                    './/img[contains(@class, "NBa7we")]',
+                    reviewElement,
+                    null,
+                    XPathResult.FIRST_ORDERED_NODE_TYPE,
+                    null
+                ).singleNodeValue;
+                
+                const dateElement = document.evaluate(
+                    './/span[contains(@class, "rsqaWe")]',
+                    reviewElement,
+                    null,
+                    XPathResult.FIRST_ORDERED_NODE_TYPE,
+                    null
+                ).singleNodeValue;
+                
+                const reviewTextElement = document.evaluate(
+                    './/span[contains(@class, "wiI7pd")]',
+                    reviewElement,
+                    null,
+                    XPathResult.FIRST_ORDERED_NODE_TYPE,
+                    null
+                ).singleNodeValue;
+                
+                const filledStarsElements = document.evaluate(
+                    './/span[contains(@class, "hCCjke") and contains(@class, "elGi1d")]',
+                    reviewElement,
+                    null,
+                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                    null
+                );
+                
+                const name = nameElement?.innerText || '';
+                const imageUrl = imageElement?.src || '';
+                const date = dateElement?.innerText || '';
+                const reviewText = reviewTextElement?.innerText || '';
+                const starCount = filledStarsElements.snapshotLength;
+                
+                if (name && reviewText) {
+                    reviews.push({
+                        date,
+                        name,
+                        imageUrl,
+                        reviewText,
+                        starCount
                     });
-                    const json2csvParser = new Parser();
-                    const csv = json2csvParser.parse({
-                        title: dataplace.title,
-                        rating: dataplace.rating,
-                        numberOfReviews: dataplace.numberOfReviews,
-                        category: dataplace.category,
-                        address: dataplace.address,
-                        website: dataplace.website,
-                        phone: dataplace.phone,
-                        imgLink: dataplace.imgLink,
-                        reviewText: reviewData.map((item) => item.reviewText).join(','),
-                    });
-                    fs.writeFileSync('data.csv', csv + '\n', { flag: 'a' });
-                    console.log('got to push to responses');
-                    responses.push({ dataplace: dataplace, review: reviewData });
                 }
-                // TODO: work on this to show all of the reviews we want
-                // } else if (responseUrl.includes("listugcposts")) {
-                //     Logger("Got API place ..", "green");
-                //     let text = await response.text();
-                //     text = text.replace(")]}'", "");
-                //     let data = JSON.parse(text);
-                //     console.log()
-                //     console.log(data)
-                //     console.log()
-
-                //     data.forEach((item) => {
-                //         if (item && typeof item === "object" && item.length > 0) {
-                //             // print out json without wrapping array
-                //             console.log(JSON.stringify(item, null, 0));
-
-                //             throw new Error("stop");
-                //         }
-                //     });
             }
+            
+            return reviews;
         });
 
-
-        await waitForReviews(page);
-
-        while (responses.length === 2) {
-            await page.waitForTimeout(5000);
-        }
-
-        if (responses.length === 0) {
+        if (reviewData.length === 0) {
             Logger("No Reviews - Skip this", "red");
             return [];
         }
 
-        Logger("Done .. Got " + responses[0].review.length + " Reviews", "green");
+        Logger("Done .. Got " + reviewData.length + " Reviews", "green");
 
-        await page.close()
-        return responses;
+        const csvData = reviewData.map(review => ({
+            placeTitle: dataplace.title,
+            placeRating: dataplace.rating,
+            placeNumberOfReviews: dataplace.numberOfReviews,
+            placeCategory: dataplace.category,
+            placeAddress: dataplace.address,
+            placeWebsite: dataplace.website,
+            placePhone: dataplace.phone,
+            placeImgLink: dataplace.imgLink,
+            reviewerName: review.name,
+            reviewerImageUrl: review.imageUrl,
+            reviewDate: review.date,
+            reviewText: review.reviewText.replace(/,/g, ';'),
+            reviewStarCount: review.starCount
+        }));
+
+        const json2csvParser = new Parser();
+        const csv = json2csvParser.parse(csvData);
+        
+        const fileExists = fs.existsSync('data.csv');
+        if (!fileExists) {
+            fs.writeFileSync('data.csv', csv + '\n');
+        } else {
+            const csvLines = csv.split('\n');
+            const dataWithoutHeader = csvLines.slice(1).join('\n');
+            fs.appendFileSync('data.csv', dataWithoutHeader + '\n');
+        }
+
+        await page.close();
+        return [{ dataplace: dataplace, review: reviewData }];
+        
     } catch (error) {
         Logger("Error in extractData", "red");
-        console.log(error)
+        console.log(error);
         Logger("No Reviews - Skip this", "red");
+        return [];
     }
 }
 
 module.exports = {
     extractData
-}
+};
