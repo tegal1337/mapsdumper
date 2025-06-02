@@ -13,7 +13,7 @@
 
 <h1 align="center"> MAPSDUMPER </h1>
 
-  <a href="https://www.youtube.com/watch?v=jHwfN4i4M8A">Demo</a>
+  <a href="https://www.youtube.com/watch?v=GyLzOtsk4_c">Demo</a>
   •
   <a href="#run--installation">Installation</a>
   •
@@ -27,7 +27,7 @@ A tool for dumping place details from Google Maps such as phone numbers, emails,
 
 
 ## Demo
- <a href="https://www.youtube.com/watch?v=jHwfN4i4M8A">  <img src="https://github.com/user-attachments/assets/a01be3cd-e534-40b6-9fcd-af7b97eef955" align="center" width="620"/></a>
+ <a href="https://www.youtube.com/watch?v=GyLzOtsk4_c">  <img src="https://github.com/user-attachments/assets/a01be3cd-e534-40b6-9fcd-af7b97eef955" align="center" width="620"/></a>
 
 
 ```bash
