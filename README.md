@@ -1,6 +1,16 @@
 <center>
 <p align="center">
-  <img src="https://github.com/tegal1337/mapsdumper/assets/31664438/04c8cf97-fdee-4d41-8201-b3e98fe21dfb" align="center" width="620"/>
+  
+```elixir
+            
+                         
+                                ▒█▀▄▀█ ░█▀▀█ ▒█▀▀█ ▒█▀▀▀█ ▒█▀▀▄ ▒█░▒█ ▒█▀▄▀█ ▒█▀▀█ ▒█▀▀▀ ▒█▀▀█ 
+                                ▒█▒█▒█ ▒█▄▄█ ▒█▄▄█ ░▀▀▀▄▄ ▒█░▒█ ▒█░▒█ ▒█▒█▒█ ▒█▄▄█ ▒█▀▀▀ ▒█▄▄▀ 
+                                ▒█░░▒█ ▒█░▒█ ▒█░░░ ▒█▄▄▄█ ▒█▄▄▀ ░▀▄▄▀ ▒█░░▒█ ▒█░░░ ▒█▄▄▄ ▒█░▒█
+                                                                    by: @Tegal1337
+
+```
+
 <h1 align="center"> MAPSDUMPER </h1>
 
   <a href="https://www.youtube.com/watch?v=jHwfN4i4M8A">Demo</a>
@@ -17,7 +27,7 @@ A tool for dumping place details from Google Maps such as phone numbers, emails,
 
 
 ## Demo
- <a href="https://www.youtube.com/watch?v=jHwfN4i4M8A"> <img src="https://telegra.ph/file/b7b977563a036daec087b.jpg" width="836"/></a>
+ <a href="https://www.youtube.com/watch?v=jHwfN4i4M8A">  <img src="https://github.com/user-attachments/assets/a01be3cd-e534-40b6-9fcd-af7b97eef955" align="center" width="620"/></a>
 
 
 ```bash
