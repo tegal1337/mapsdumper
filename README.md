@@ -61,7 +61,6 @@ How to run ?
 
  - Windows / Linux
  - Google Chrome
- - a Youtube account 
 
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/fdciabdul)
